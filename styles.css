@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+/* CSS HEX 
+--dark-lava: #463f3aff;
+--middle-grey: #8a817cff;
+--pale-silver: #bcb8b1ff;
+--isabelline: #f4f3eeff;
+--melon: #e0afa0ff; */
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #f4f3eeff;
+  --accent-color: #e0afa0ff;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: calc(15px + 0.390625vw);
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: #333;
+  line-height: 1.6;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 10px 0;
+}
+
+.logo-text {
+  color: var(--accent-color);
+}
+
+p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+/* Header */
+header {
+  background-color: var(--primary-color);
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 8px;
+}
+
+.header-element {
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.header-element input:hover {
+  background-color: lightgray;
+}
+
+.header-element input {
+  width: 300px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  padding: 3px;
+  font-size: 1.5em;
+  text-align: center;
+  border: none;
+}
+
+/* adjust the size of the placeholder text */
+.header-element input::-webkit-input-placeholder {
+  font-size: 0.8em;
+  color: var(--accent-color);
+}
+.header-element input::-moz-placeholder {
+  font-size: 0.8em;
+  color: var(--accent-color);
+}
+.header-element input:-ms-input-placeholder {
+  font-size: 0.8em;
+  color: var(--accent-color);
+}
+.header-element input:-moz-placeholder {
+  font-size: 0.8em;
+  color: var(--accent-color);
+}
+
+.header-element input:focus {
+  outline: none;
+}
+
+input:hover {
+  outline: none;
+}
+
+@media screen and (min-width: 720px) {
+  header {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-content: space-between;
+  }
+
+  #hymn-list {
+    float: left;
+    width: 50%;
+    padding-left: 1em;
+    padding-top: 2em;
+  }
+
+  #hymn-container {
+    float: right;
+    width: 50%;
+  }
+}
+
+#hymn-container {
+  display: flex;
+  justify-content: center;
+}
+
+#hymn-list {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.hymn h2 {
+  color: var(--accent-color);
+  padding: 10px;
+}
+
+.hymn .chapter {
+  padding-left: 50px;
+}
+
+.hymn .subtext {
+  font-size: 1rem;
+  padding-left: 50px;
+  padding-bottom: 30px;
+}
+
+.verse {
+  font-size: 1rem;
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+}
+
+.hymn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.hymn-title:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.plyr {
+  --plyr-color-main: var(--accent-color);
+  --plyr-audio-controls-background: var(--secondary-color);
+  /* --plyr-badge-border-radius: 10px; */
+  border-radius: 10px;
+  width: 350px;
+}
