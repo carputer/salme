@@ -97,11 +97,11 @@ async function filterHymns() {
   const searchQuery = document
     .getElementById("search-query")
     .value.toLowerCase()
-    .replace(/,/g, ""); // remove commas from the search query
+    .replace(/[^a-zæøå\s]/g, ""); // only use alphabet from the search query
   const hymns = await fetchHymns();
   const filteredHymns = hymns
     .filter((hymn) => {
-      const title = hymn.title.toLowerCase().replace(/,/g, ""); // remove commas from the hymn title
+      const title = hymn.title.toLowerCase().replace(/[^a-zæøå\s]/g, ""); // only use alphabet from the hymn title
       return title.includes(searchQuery);
     })
     .sort((a, b) => a.title.localeCompare(b.title));
