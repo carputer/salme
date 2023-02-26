@@ -7,7 +7,7 @@ async function displayHymns() {
   const list = document.createElement("ul");
   sortedHymns.forEach((hymn) => {
     const item = document.createElement("li");
-    item.innerHTML = `<a href="#" class="hymn-title" onclick="searchHymns(${hymn.number}, plyr)">${hymn.title} - ${hymn.number}</a>`;
+    item.innerHTML = `<a href="#" class="hymn-title" onclick="searchHymns(${hymn.number})">${hymn.title} - ${hymn.number}</a>`;
     list.appendChild(item);
   });
 
@@ -71,7 +71,6 @@ async function searchHymns(number) {
 
   audioSource.src = `data/Melodi/${hymn.melody}.mp3`;
   player.load();
-  plyr.source = audioSource.src;
 }
 
 async function fetchHymns() {
@@ -86,11 +85,48 @@ async function fetchHymns() {
 }
 
 // Nullstill input box når salme valgt fra liste
-const input = document.querySelector("#search-input");
+const input = document.querySelector("#search-query");
 const hymnList = document.querySelector("#hymn-list");
 
 hymnList.addEventListener("click", function () {
   input.value = "";
+  filterHymns();
 });
+
+async function filterHymns() {
+  const searchQuery = document
+    .getElementById("search-query")
+    .value.toLowerCase()
+    .replace(/,/g, ""); // remove commas from the search query
+  const hymns = await fetchHymns();
+  const filteredHymns = hymns
+    .filter((hymn) => {
+      const title = hymn.title.toLowerCase().replace(/,/g, ""); // remove commas from the hymn title
+      return title.includes(searchQuery);
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
+
+  const list = document.createElement("ul");
+  filteredHymns.forEach((hymn) => {
+    const item = document.createElement("li");
+    item.innerHTML = `
+      <a href="#" class="hymn-title">
+        ${hymn.title} - ${hymn.number}
+      </a>
+    `;
+    item.addEventListener("click", () => {
+      searchHymns(hymn.number);
+      const hymnList = document.getElementById("hymn-list");
+      hymnList.innerHTML = "";
+      displayHymns();
+    });
+    list.appendChild(item);
+  });
+
+  const hymnList = document.getElementById("hymn-list");
+  hymnList.innerHTML = "";
+  hymnList.appendChild(list);
+}
+document.getElementById("search-query").addEventListener("input", filterHymns);
 
 displayHymns();

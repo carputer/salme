@@ -90,6 +90,7 @@ header {
   font-size: 1.5em;
   text-align: center;
   border: none;
+  margin-bottom: 5px;
 }
 
 /* adjust the size of the placeholder text */
